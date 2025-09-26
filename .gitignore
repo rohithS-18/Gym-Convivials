@@ -1,0 +1,42 @@
+# ----------------
+# Maven / Spring Boot
+# ----------------
+backend/target/
+backend/.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# IntelliJ IDEA
+backend/.idea
+backend/*.iml
+backend/*.ipr
+backend/*.iws
+
+# Eclipse / STS
+backend/.classpath
+backend/.project
+backend/.settings
+backend/.apt_generated
+backend/.factorypath
+backend/.springBeans
+backend/.sts4-cache
+
+# Logs
+*.log
+
+# Spring Boot sensitive configs
+backend/application-*.yml
+backend/application-*.properties
+backend/*.env
+
+
+# ----------------
+# React / Node.js
+# ----------------
+frontend/node_modules/
+frontend/build/
+frontend/.env
+
+# IDEs
+frontend/.idea
+frontend/.vscode
