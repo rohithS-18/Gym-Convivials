@@ -2,7 +2,7 @@ package com.gym.convivials.service;
 
 import com.gym.convivials.dao.UserDao;
 import com.gym.convivials.entities.UserPrincipal;
-import com.gym.convivials.entities.Users;
+import com.gym.convivials.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,7 +17,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-       Users user=userdao.findUserByUsername(username);
+       User user=userdao.findUserByUsername(username);
 //       System.out.println(user.getUsername());
 //       System.out.println(user.getPasword());
        if(user==null){

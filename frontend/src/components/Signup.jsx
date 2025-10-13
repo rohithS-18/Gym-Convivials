@@ -1,19 +1,16 @@
 import React, { useState } from 'react'
 import Registration from './Registration'
 import axios from 'axios'
-// import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router'
 
 function Signup() {
-//   const navigate=useNavigate();
+  const navigate=useNavigate();
     const[warning,setWarning]=useState();
-  function handleSignup(userdetails){
+  async function handleSignup(userdetails){
     try{
-      axios.post("http://localhost:8080/register",userdetails)
-      .then((res)=>{
-        console.log(res.data)
-      })
+      const res= await axios.post("http://localhost:8080/register",userdetails)
       setWarning("Successful registration")
-    //   navigate("/login");
+       navigate("/login");
     }
 
     catch(e){
@@ -24,8 +21,7 @@ function Signup() {
   }
   return (    
     <Registration 
-        func={"Sign up"}
-        mode={signup}
+        mode={"Signup"}
         handleuserreg={handleSignup}
         warningmsg={warning}
     />

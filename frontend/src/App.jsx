@@ -1,19 +1,42 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import Registration from './assets/components/Registration'
-import Login from './assets/components/login'
-import Signup from './assets/components/signup'
+import Login from './components/Login'
+import Signup from './components/Signup'
+import { createBrowserRouter,RouterProvider } from 'react-router-dom'
+import ProtectedRoutes from './utils/ProtectedRoutes'
+import Test from './components/test'
+import GymOnboarding from './components/OnboardingCard'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+    const router = createBrowserRouter([
+    {
+      path:'/',
+      element:<ProtectedRoutes/>,
+      children:[
+        {
+        path: '/test',
+        element: <GymOnboarding/>        
+       }
+      ]
+    },
+    {
+      path:"/login",
+      element:<Login/>
+    },
+    {
+      path:"/signup",
+      element:<Signup/>
+    }
 
-  return (
-    <>
-      <Signup/>
-    </>
-  )
+  ]);
+    return (
+          <RouterProvider router={router} />
+
+  );
+  // return(
+  //   <GymOnboarding />
+  // )
 }
 
 export default App

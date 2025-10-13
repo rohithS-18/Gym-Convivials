@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-function Registration({ func, mode, handleuserreg, warningmsg }) {
+function Registration({mode, handleuserreg, warningmsg }) {
   const warning = useRef();   
    useEffect(()=>{
             warning.current.textContent=warningmsg
@@ -8,7 +8,7 @@ function Registration({ func, mode, handleuserreg, warningmsg }) {
 
     const handleUserSubmit=(e)=>{
     e.preventDefault();
-    if(mode==signup && e.target.password.value!==e.target.repassword.value){
+    if(mode=="Signup" && e.target.password.value!==e.target.repassword.value){
               warning.current.textContent="Passwords do not match"
         }              
         else{
@@ -26,7 +26,7 @@ function Registration({ func, mode, handleuserreg, warningmsg }) {
       <div className="flex flex-col justify-center items-center w-1/2">
         <div className="relative w-[340px] bg-black bg-opacity-30 px-8 py-10 rounded-xl shadow-2xl neon-border">
           {/* Neon corners (custom with pseudo-elements) */}
-          <h2 className="text-5xl font-serif font-bold mb-10 text-white text-center">Login</h2>
+          <h2 className="text-5xl font-serif font-bold mb-10 text-white text-center">{mode}</h2>
           <form className="space-y-6" onSubmit={handleUserSubmit}>
             <div>
               <label className="block mb-1 font-medium text-white"></label>
@@ -46,8 +46,15 @@ function Registration({ func, mode, handleuserreg, warningmsg }) {
                 className="w-full px-4 py-2 rounded-md bg-transparent border border-cyan-400 text-white placeholder-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
               />
             </div>
-            {mode==signup && (
+            {mode=="Signup" && (
               <>
+              <label className="block mb-1 font-medium text-white"></label>
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="Enter Email"
+                className="w-full px-4 py-2 rounded-md bg-transparent border border-cyan-400 text-white placeholder-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"             
+                /> 
               <label className="block mb-1 font-medium text-white"></label>
                 <input
                   type="text"
@@ -64,7 +71,7 @@ function Registration({ func, mode, handleuserreg, warningmsg }) {
             >              Submit
             </button>
             <p >
-              {mode==login && (
+              {mode=="Login" && (
                 <a
                   href="/signup"
                   style={{ color: '#004182', textDecoration: 'none' }}
@@ -73,7 +80,7 @@ function Registration({ func, mode, handleuserreg, warningmsg }) {
                 </a>
               )}
               {
-                mode==signup && (
+                mode=="Signup" && (
                   <a
                   href="/login"
                   style={{ color: '#004182', textDecoration: 'none' }}
@@ -95,7 +102,7 @@ function Registration({ func, mode, handleuserreg, warningmsg }) {
         }}
       ></div>
       {/* Additional neon border and button effect */}
-      <style jsx>{`
+      {/* <style jsx>{`
         .neon-border {
           box-shadow:
             0 0 8px #06faff,
@@ -129,7 +136,7 @@ function Registration({ func, mode, handleuserreg, warningmsg }) {
             0 0 12px #06faff,
             0 0 22px #06faff;
         }
-      `}</style>
+      `}</style> */}
     </div>
   );
 };

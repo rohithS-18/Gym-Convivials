@@ -7,12 +7,14 @@ import java.util.Collection;
 import java.util.List;
 
 public class UserPrincipal implements UserDetails {
-    Users user;
+    User user;
 
-    public UserPrincipal(Users user){
+    public UserPrincipal(User user){
         this.user=user;
     }
-
+    public User getUser(){
+        return this.user;
+    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of();
