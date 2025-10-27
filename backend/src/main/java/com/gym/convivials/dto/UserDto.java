@@ -1,7 +1,6 @@
 package com.gym.convivials.dto;
 
 
-import lombok.Builder;
 import lombok.Data;
 import java.util.Date;
 

@@ -1,6 +1,6 @@
 package com.gym.convivials.service;
 
-import com.gym.convivials.dao.UserDao;
+import com.gym.convivials.repository.UserRepo;
 import com.gym.convivials.entities.UserPrincipal;
 import com.gym.convivials.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
-    public UserDao userdao;
+    public UserRepo userdao;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

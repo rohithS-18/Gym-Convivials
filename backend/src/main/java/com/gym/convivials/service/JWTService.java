@@ -37,6 +37,7 @@ public class JWTService {
     }
 
     public SecretKey getKey(){
+        System.out.println(secretKey);
         byte[] keyBytes= Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }
@@ -61,7 +62,8 @@ public class JWTService {
     }
 
     public boolean validateToken(String token, UserDetails user) {
-        final String userName = extractUsername(token);
+        String userName = extractUsername(token);
+        System.out.println("username "+userName+" is expired:"+!isTokenExpired(token));
         return (userName.equals(user.getUsername()) && !isTokenExpired(token));
     }
 

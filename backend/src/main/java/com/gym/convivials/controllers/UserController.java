@@ -1,6 +1,6 @@
 package com.gym.convivials.controllers;
 
-import com.gym.convivials.dao.UserDao;
+import com.gym.convivials.repository.UserRepo;
 import com.gym.convivials.dto.UserDto;
 import com.gym.convivials.service.JWTService;
 import com.gym.convivials.service.UserService;
@@ -8,16 +8,14 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
 public class UserController {
-    private final UserDao userDao;
+    private final UserRepo userDao;
     private final UserService userservice;
     private final JWTService jwtService;
 
