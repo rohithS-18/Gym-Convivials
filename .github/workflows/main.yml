@@ -13,7 +13,7 @@ jobs:
       - name: hello step
         run: |
           echo "welcome to gha"
-          echo "welcome to build"
+          echo "welcome ${{vars.MY_NAME}}"
   test:
     runs-on: ubuntu-latest
     needs: build
