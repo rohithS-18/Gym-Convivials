@@ -14,9 +14,10 @@ on:
         description: "Please provide artifact id"
         required: true
 jobs:
-  - name: input-demo:
+  input-demo:
     runs-on: ubuntu-latest
     steps:
-      - printInput
-      - run: echo "Deploying artifact ${{artifact-id}} to ${{envirnoment}} envirnoment"
+      - name: printInput
+        run: echo "envirnoment ${{envirnoment}} and artifact-id ${{artifact-id}}"
+    
   
