@@ -18,6 +18,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: printInput
-        run: echo "envirnoment ${{envirnoment}} and artifact-id ${{artifact-id}}"
+        run: echo "envirnoment ${{inputs.envirnoment}} and artifact-id ${{inputs.artifact-id}}"
     
   
