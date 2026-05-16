@@ -1,0 +1,20 @@
+name: jobs-output
+on: workflow_dispatch
+jobs:
+  job1:
+    outputs:
+      version: ${{steps.step1.outputs.version}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: step-one
+        id: step1
+        run: echo "version=1.1" >>$GITHUB_OUTPUT
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - name: step-two
+        id: step2
+        run: echo "The value received from 1st output is ${{needs.job1.outputs.version}}
+
+
