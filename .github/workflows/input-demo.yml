@@ -1,0 +1,22 @@
+name: input-demo
+on:
+  workflow_dispatch:
+    inputs:
+      envirnoment:
+        description: "Please provide envirnoment details"
+        type: choice
+        required: true
+        options:
+          - dev
+          - test
+          - prod
+      artifact-id:
+        description: "Please provide artifact id"
+        required: true
+jobs:
+  - name: input-demo:
+    runs-on: ubuntu-latest
+    steps:
+      - printInput
+      - run: echo "Deploying artifact ${{artifact-id}} to ${{envirnoment}} envirnoment"
+  
