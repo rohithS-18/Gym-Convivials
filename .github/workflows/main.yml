@@ -22,7 +22,7 @@ jobs:
         run:  echo "Welcome to test"
       - uses: actions/checkout@v4
       - name: print postController
-        run: cat PostController.java
+        run: cat src/main/java/com/gym/convivials/controllers/PostController.java
         
       
     
