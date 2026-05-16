@@ -15,6 +15,6 @@ jobs:
     steps:
       - name: step-two
         id: step2
-        run: echo "The value received from 1st output is ${{needs.job1.outputs.version}}
+        run: echo "The value received from 1st output is ${{needs.job1.outputs.version}}"
 
 
