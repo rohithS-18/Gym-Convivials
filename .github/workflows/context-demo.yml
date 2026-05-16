@@ -1,0 +1,8 @@
+name: context-demo
+on: push
+jobs:
+  context-info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print context details
+        run: echo "${{github.actor}} triggered from ${{github.ref_name}} branch"

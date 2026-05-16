@@ -1,0 +1,23 @@
+name: input-demo
+on:
+  workflow_dispatch:
+    inputs:
+      envirnoment:
+        description: "Please provide envirnoment details"
+        type: choice
+        required: true
+        options:
+          - dev
+          - test
+          - prod
+      artifact-id:
+        description: "Please provide artifact id"
+        required: true
+jobs:
+  input-demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: printInput
+        run: echo "envirnoment ${{inputs.envirnoment}} and artifact-id ${{inputs.artifact-id}}"
+    
+  
