@@ -20,6 +20,9 @@ jobs:
     steps:
       - name: test step
         run:  echo "Welcome to test"
+      - uses: actions/checkout@v4
+      - name: print postController
+        run: cat PostController.java
         
       
     
