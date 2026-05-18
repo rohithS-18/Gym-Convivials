@@ -5,5 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: step1
-        if: ${{ 1==2 }}
-        run: echo "Hi There!"
+        if: github.ref_name=='master'
+        run: echo "Hi Master!"
+      - name: step2
+        if: github.ref_name=='postcontroller'
+        run: echo "Hi Post controller!"
