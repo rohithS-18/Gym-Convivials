@@ -20,7 +20,7 @@ public class PostController {
     public ResponseEntity<?> createPost(@RequestBody PostDto postData) throws IOException {
         int postId=postsService.uploasPost(postData);
         System.out.println("postId "+postId);
-        return new ResponseEntity<>("post uploaded  succcessfully"+postId,HttpStatus.OK);
+        return new ResponseEntity<>("post uploaded succcessfully"+postId,HttpStatus.OK);
     }
 
 }
