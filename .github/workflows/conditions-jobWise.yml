@@ -1,0 +1,22 @@
+name: jobwise-condition
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+  push:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event+name=='pull-request' && github.event.pull_request.base.ref=='master'
+    steps:
+      - name: step1
+        run: echo "In build"
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event_name =='push' && github.ref_name=='master'
+    steps:
+      - name: step2
+        run: echo "In deploy"
+
+
