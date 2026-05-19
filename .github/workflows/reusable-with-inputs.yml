@@ -1,0 +1,14 @@
+name: reusable
+on:
+  workflow_call:
+    inputs:
+      name:
+        description: Enter name
+        required: true
+        type: string
+jobs:
+  print-name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print
+        run: echo "Hi ${{inputs.name}}
