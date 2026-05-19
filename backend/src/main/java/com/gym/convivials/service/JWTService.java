@@ -1,20 +1,18 @@
 package com.gym.convivials.service;
 
+import com.gym.convivials.entities.UserPrincipal;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+
+import java.util.*;
 import java.util.function.Function;
-import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class JWTService {
@@ -22,13 +20,18 @@ public class JWTService {
     private String secretKey;
 
 
-    public String generateToken(String username, int userId){
+    public String generateToken(UserPrincipal userDetails){
         Map<String,Object> claims =new HashMap<>();
-        claims.put("userId",userId);
+        List<String> roles = userDetails.getAuthorities()
+                .stream()
+                .map(GrantedAuthority::getAuthority)
+                .toList();
+        claims.put("userId",userDetails.getUser().getUserId());
+        claims.put("roles",roles);
          return Jwts.builder()
                  .claims()
                  .add(claims)
-                 .subject(username)
+                 .subject(userDetails.getUsername())
                  .issuedAt(new Date(System.currentTimeMillis()))
                  .expiration(new Date(System.currentTimeMillis()+ 60L*60*24*30*1000))
                  .and()
@@ -59,6 +62,9 @@ public class JWTService {
                 .build()
                 .parseSignedClaims(token)
                 .getPayload() ;
+    }
+    public List extractRoles(String token) {
+        return extractAllClaims(token).get("roles", List.class);
     }
 
     public boolean validateToken(String token, UserDetails user) {

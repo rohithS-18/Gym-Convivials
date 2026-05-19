@@ -30,7 +30,7 @@ public class JWTFilter extends OncePerRequestFilter {
         if(authHeader!=null && authHeader.startsWith("Bearer")){
             token=authHeader.substring(7);
             System.out.println(token);
-            username=jwtService.extractUsername(token);
+                username=jwtService.extractUsername(token);
         }
         if(username!=null && SecurityContextHolder.getContext().getAuthentication()==null){
             UserDetails userdetails=context.getBean(MyUserDetailsService.class).loadUserByUsername(username);
@@ -42,6 +42,7 @@ public class JWTFilter extends OncePerRequestFilter {
                         System.out.println(SecurityContextHolder.getContext());
                     }
         }
+        System.out.println("context value:"+SecurityContextHolder.getContext().getAuthentication().getName());
         filterChain.doFilter(request,response);
     }
 }

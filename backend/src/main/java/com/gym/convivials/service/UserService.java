@@ -5,6 +5,7 @@ import com.gym.convivials.repository.UserRepo;
 import com.gym.convivials.dto.UserDto;
 import com.gym.convivials.entities.User;
 import com.gym.convivials.entities.UserPrincipal;
+import lombok.extern.slf4j.Slf4j;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.PrecisionModel;
@@ -16,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class UserService {
     @Autowired
     public UserRepo userdao;
@@ -36,13 +38,17 @@ public class UserService {
     }
 
     public String verify(UserDto user){
+        log.debug("Entering into verify for authentication");
+        log.debug("Received user details "+user.getUsername()+" "+user.getPasword());
         Authentication auth=authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPasword()));
         if(auth.isAuthenticated()){
+            log.debug("User "+user.getUsername()+" successfully authenticated");
             UserPrincipal principleUser=(UserPrincipal)auth.getPrincipal();
             User authenticatedUser=principleUser.getUser();
-            return jwtService.generateToken(authenticatedUser.getUsername(),authenticatedUser.getUserId());
+            return jwtService.generateToken(principleUser);
         }
         else{
+            log.debug("User "+user.getUsername()+"  authenticated failed");
             return "failure";
         }
     }

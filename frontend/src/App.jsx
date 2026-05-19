@@ -16,7 +16,7 @@ function App() {
       children:[
         {
         path: '/test',
-        element: <GymOnboarding/>        
+        element: <Test/>        
        }
       ]
     },
@@ -35,7 +35,7 @@ function App() {
 
   );
   // return(
-  //   <GymOnboarding />
+  //   <Test />
   // )
 }
 

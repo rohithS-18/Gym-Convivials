@@ -22,7 +22,7 @@ import java.time.OffsetDateTime;
 public class Friendships {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @ManyToOne
     @JoinColumn(name ="requester_id")
     private User requester;

@@ -91,7 +91,7 @@ const GymOnboarding = () => {
       console.log('Form submitted:', formData);
       // Handle final submission,
        formData.userId=userDetails.userId;
-       formData.username=userDetails.username;
+       formData.username=userDetails.username;       
       const handleSubmit = async ()=>{
         const res= await axios.put("http://localhost:8080/upateUserProfile", formData,{
              headers:{

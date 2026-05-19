@@ -1,6 +1,7 @@
 package com.gym.convivials.entities;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -15,9 +16,13 @@ public class UserPrincipal implements UserDetails {
     public User getUser(){
         return this.user;
     }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return user.getRoles()
+                .stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName()))
+                .toList();
     }
 
     @Override
@@ -29,4 +34,5 @@ public class UserPrincipal implements UserDetails {
     public String getUsername() {
         return user.getUsername();
     }
+
 }

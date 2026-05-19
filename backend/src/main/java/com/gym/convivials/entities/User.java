@@ -1,11 +1,14 @@
 package com.gym.convivials.entities;
 
+import com.gym.convivials.enums.ROLES;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.locationtech.jts.geom.Point;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @jakarta.persistence.Entity
 @Table(name="users")
@@ -27,4 +30,19 @@ public class User {
     private Point location;
     @Column(name = "profilepic")
     private String profilePic;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_roles", // name of the join table
+            joinColumns = @JoinColumn(name = "user_id"), // foreign key to users table
+            inverseJoinColumns = @JoinColumn(name = "role_id") // foreign key to roles table
+    )
+    private Set<Role> roles = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "gym_id")
+    private Gyms gym;
+    @ManyToOne
+    @JoinColumn(name="gym_group_id")
+    private GymGroup group;
+    @OneToOne(mappedBy = "user")
+    private PartnerPreference partnerPreference;
 }

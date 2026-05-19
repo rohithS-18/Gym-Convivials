@@ -41,6 +41,7 @@ public class SpringSecurity  {
                 .csrf(customizer->customizer.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(req->req
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST,"/mlogin","/register").permitAll()
                         .anyRequest().authenticated()
                   )
