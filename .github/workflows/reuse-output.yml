@@ -1,0 +1,5 @@
+name: reuse-output
+on: workflow_dispatch
+jobs:
+  call-output-workflow:
+    uses: ./.github/workflows/jobs-output.yml
