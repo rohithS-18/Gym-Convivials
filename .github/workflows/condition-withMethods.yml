@@ -1,0 +1,32 @@
+name: builtIn-methods
+on: workflow_dispatch
+inputs:
+  env:
+    description:  "Please provide env"
+    type: choice
+    required: true
+    options:
+      - dev1
+      - dev2
+      - feature
+      - main
+jobs:
+  jobDev:
+    if: startsWith(${{inputs.env}},'dev')
+    runs-on: ubuntu-latest
+    steps:
+      - name: stepDev
+        run: echo "Env is dev"
+  jobFeature:
+    if: ${{inputs.env}}=='feature'
+    runs-on: ubuntu-latest
+    steps:
+      - name: stepFeature
+        run: echo "Env is feature"
+  jobSuccess:
+    needs: ['jobDev','jobFeature']
+    if: always() && !failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: stepSuccess
+        run: echo "Run success"
