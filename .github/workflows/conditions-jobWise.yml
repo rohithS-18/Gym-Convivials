@@ -14,7 +14,7 @@ jobs:
         run: echo "In build"
   deploy:
     runs-on: ubuntu-latest
-    if: github.event_name =='push' && github.ref_name=='master'
+    if: github.event_name == 'push' && github.ref_name=='master'
     steps:
       - name: step2
         run: echo "In deploy"
