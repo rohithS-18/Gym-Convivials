@@ -19,7 +19,7 @@ jobs:
       - name: stepDev
         run: echo "Env is dev"
   jobFeature:
-    if: ${{inputs.env}}=='feature'
+    if: ${{inputs.env}} == 'feature'
     runs-on: ubuntu-latest
     steps:
       - name: stepFeature
