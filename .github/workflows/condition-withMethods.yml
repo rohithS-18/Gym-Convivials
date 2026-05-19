@@ -13,13 +13,13 @@ on:
           - main
 jobs:
   jobDev:
-    if: startsWith(${{inputs.env}},'dev')
+    if: ${{startsWith(inputs.env,'dev')}}
     runs-on: ubuntu-latest
     steps:
       - name: stepDev
         run: echo "Env is dev"
   jobFeature:
-    if: ${{inputs.env}} == 'feature'
+    if: ${{inputs.env == 'feature'}}
     runs-on: ubuntu-latest
     steps:
       - name: stepFeature
