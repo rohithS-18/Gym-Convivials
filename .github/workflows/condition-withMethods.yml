@@ -1,15 +1,16 @@
 name: builtIn-methods
-on: workflow_dispatch
-inputs:
-  env:
-    description:  "Please provide env"
-    type: choice
-    required: true
-    options:
-      - dev1
-      - dev2
-      - feature
-      - main
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        description: "Please provide env"
+        type: choice
+        required: true
+        options:
+          - dev1
+          - dev2
+          - feature
+          - main
 jobs:
   jobDev:
     if: startsWith(${{inputs.env}},'dev')
